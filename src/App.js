@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   ScrollToTop,
   Clients,
@@ -13,16 +13,9 @@ import {
 } from './components';
 import './scss/index.scss';
 import scrollreveal from 'scrollreveal';
+import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
-  const [isDark, setIsDark] = useState(false);
-
-  const changeTheme = () => {
-    isDark ? setIsDark(false) : setIsDark(true);
-  };
-
-  const theme = isDark ? 'dark' : 'light';
-
   useEffect(() => {
     const sr = scrollreveal({
       origin: 'bottom',
@@ -54,9 +47,9 @@ function App() {
   }, 1500);
 
   return (
-    <div className='app-container' data-theme={theme}>
+    <ThemeProvider>
       <ScrollToTop />
-      <Navbar changeTheme={changeTheme} isDark={isDark} />
+      <Navbar />
       <Home />
       <Free />
       <Clients />
@@ -65,7 +58,7 @@ function App() {
       <Like />
       <Signup />
       <Footer />
-    </div>
+    </ThemeProvider>
   );
 }
 

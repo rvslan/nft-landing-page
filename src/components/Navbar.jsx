@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { MdClose } from 'react-icons/md';
 import { ImSun } from 'react-icons/im';
 import { BsFillMoonFill } from 'react-icons/bs';
 import logo from '../assets/logo.png';
+import { ThemeContext } from '../context/ThemeContext';
 
-function Navbar({ changeTheme, isDark }) {
+function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { isDark, changeTheme } = useContext(ThemeContext);
 
   return (
     <nav>
